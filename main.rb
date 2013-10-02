@@ -28,11 +28,15 @@ opts.on('-r', '--relative') { options.relative = true }
 opts.parse!(ARGV)
 
 number = 0
+info = ''
+log = File.open("log.txt", 'w')
+log.write("Crawl started: " + Time.new.to_s + "\n")
+
 Anemone.crawl(root, :discard_page_bodies => true) do |anemone|
   
   anemone.on_every_page do |page|
     if options.relative
-      puts page.url.path
+      puts "fetching #{page.url.path}..."
     else
       puts page.url
     end
@@ -42,10 +46,16 @@ Anemone.crawl(root, :discard_page_bodies => true) do |anemone|
       content = page.url.path + "\n\n" + page.body
       # create a new file and put the contents there
       File.new("#{number}.html", 'w').write(content)
-      # inform the user
-      puts "#{number}.html created"
       number = number + 1
+      # log informations      
+      log.write("#{page.url.path} >> #{number}.html\n")      
+    else
+      # not a valid page
+      log.write("WARNING: Response #{page.code} on #{page.url.path}\n")
     end
   end
-  
+
 end
+
+log.write("Crawl finished: : " + Time.new.to_s + "\n\n\n")
+puts "finished!"
