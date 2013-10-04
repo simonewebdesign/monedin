@@ -37,8 +37,11 @@ s_leo_auth_token="delete me"; Version=1; Domain=.www.linkedin.com; Max-Age=0; Ex
 sl="delete me"; Version=1; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
 sl="v=1&NxiHV"; Version=1; Domain=.www.linkedin.com; Max-Age=7776000; Expires=Tue, 31-Dec-2013 11:22:05 GMT; Path=/
 leo_auth_token="delete me"; Version=1; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+
 leo_auth_token="delete me"; Version=1; Domain=.www.linkedin.com; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+
 lang="v=2&lang=en-us"; Version=1; Domain=linkedin.com; Path=/
+
 Pragma: no-cache
 Expires: Thu, 01 Jan 1970 00:00:00 GMT
 Cache-Control: no-cache, no-store
@@ -62,7 +65,7 @@ Connection: keep-alive
 ### Request Headers From Upload Stream
 
 Content-Length: 227
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded  # You should set Content-Type: header field for POST. If no Content-Type: field given, this method uses “application/x-www-form-urlencoded” by default.
 
 
 # POST Parameters
